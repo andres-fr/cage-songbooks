@@ -1,0 +1,84 @@
+#N canvas 520 22 801 752 12;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array \$0-gain 441 float 1;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0;
+#X coords 0 1 440 -1 202 142 1;
+#X restore 493 317 graph;
+#X obj 494 318 cnv 15 200 140 empty empty empty 20 12 0 14 -204800
+-66577 0;
+#X text 479 312 1;
+#X text 472 441 -1;
+#X obj 272 389 adc~ 1;
+#X obj 310 489 cnv 15 415 180 empty empty Gain 50 -10 0 16 -191800
+-66577 0;
+#X obj 329 389 osc~;
+#X obj 329 351 nbx 5 14 -1e+37 1e+37 0 1 bkjhgk hfjhgd empty 0 -8 0
+10 -204800 -1 -1 400 256;
+#X obj 350 499 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -204800
+-1 -1 0 1;
+#X obj 329 626 *~;
+#X obj 347 596 line~;
+#X msg 347 570 \$1 10;
+#X obj 347 534 pow 4;
+#X floatatom 401 528 5 0 0 0 - - -;
+#X floatatom 405 570 8 0 0 0 - - -;
+#X obj 186 546 loadbang;
+#X msg 110 585 \; pd dsp 1;
+#X obj 186 578 tgl 15 0 empty empty empty 17 7 0 10 -204800 -1 -1 1
+1;
+#X text 391 349 Hz;
+#X obj 186 601 metro 100;
+#X obj 317 687 dac~;
+#X obj 186 685 tabwrite~ \$0-gain;
+#X text 167 27 -1 & 1 are convenient values to adjust the gain \, because
+we only need to multiply this by values that go from 0 to 1 \, so we
+have a gain change that goes from silence (0) up to the maximum values
+(-1 and 1). It's also possible to multiply the signal so that it goes
+over the limits of -1 and 1 \, we'll talk about that later on. We usually
+need to watch out so this doesn't happen.;
+#X text 168 146 Another thing to care about is that our perception
+of sound intensity is not linear \, but logarithmic. One way to deal
+with this is to raise the values from 0 to 1 to the power of 4 \, which
+will conveniently give us a reasonable log scale.;
+#X text 169 229 Other than that \, we use [line~] (a ramp generator)
+to create smoother changes in the values. Below we have an oscillator
+\, change the frequcny values and the gain slider. You can plug in
+your mic with [adc~ 1].;
+#X text 63 389 (Analog to Digital Converter);
+#X text 370 389 Oscillator;
+#X text 348 412 values between;
+#X text 371 430 -1 & 1;
+#X text 444 527 linear \, from 0 to 1;
+#X text 473 570 Log scaled \, from 0 to 1;
+#X text 399 595 [line~] smooth amplitude changes;
+#X text 363 626 Adjust Gain by Multiplying to values between 0 & 1!
+;
+#X text 363 689 (Digital to Analog Converter);
+#X connect 6 0 9 0;
+#X connect 7 0 6 0;
+#X connect 8 0 12 0;
+#X connect 8 0 13 0;
+#X connect 9 0 20 0;
+#X connect 9 0 20 1;
+#X connect 9 0 21 0;
+#X connect 10 0 9 1;
+#X connect 11 0 10 0;
+#X connect 12 0 11 0;
+#X connect 12 0 14 0;
+#X connect 15 0 16 0;
+#X connect 15 0 17 0;
+#X connect 17 0 19 0;
+#X connect 19 0 21 0;

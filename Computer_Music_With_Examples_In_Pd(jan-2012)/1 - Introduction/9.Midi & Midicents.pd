@@ -1,0 +1,189 @@
+#N canvas 360 22 1269 1059 12;
+#X obj 125 755 ftom;
+#X obj 166 721 nbx 5 14 -1e+37 1e+37 0 0 empty empty Hz 18 -6 0 10
+-260097 -1 -1 0 256;
+#X text 175 753 =;
+#X obj 125 794 nbx 5 14 -1e+37 1e+37 0 0 empty empty MIDI 18 -6 0 10
+-204786 -1 -1 0 256;
+#X obj 185 225 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -261682
+-1 -1 0 1;
+#X obj 182 250 nbx 5 14 -1e+37 1e+37 0 0 empty empty MIDI 60 7 0 10
+-204786 -1 -1 0 256;
+#X obj 182 272 mtof;
+#X obj 182 300 nbx 5 14 -1e+37 1e+37 0 0 empty empty Hz 60 7 0 10 -260097
+-1 -1 0 256;
+#X msg 182 163 60;
+#X msg 208 193 69;
+#X obj 122 611 + 69;
+#X obj 175 410 cnv 15 155 18 empty empty empty 20 12 0 14 -215585 -66577
+0;
+#X obj 122 585 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262130 -1 -1 0 256;
+#X obj 122 639 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-204786 -1 -1 0 256;
+#X obj 207 754 expr log($f1/440) / log(2) * 12 + 69;
+#X obj 122 552 expr log($f1) / log(2) * 12;
+#X obj 122 523 / 440;
+#X obj 122 500 nbx 5 14 20 1e+37 0 0 empty empty empty 0 -8 0 10 -261682
+-1 -1 20 256;
+#X obj 323 553 cnv 15 155 18 empty empty empty 20 12 0 14 -215585 -66577
+0;
+#X obj 207 793 nbx 5 14 -1e+37 1e+37 0 0 empty empty MIDI 18 -6 0 10
+-204786 -1 -1 0 256;
+#X text 217 163 Middle C;
+#X text 240 194 Middle A;
+#X text 224 274 converts MIDI numbers to Frequency;
+#X text 75 334 [mtof] stands for "MIDI to Frequency" and performs this
+conversion. The 0 to 127 range is about 8Hz to 12.5Khz.;
+#X text 180 497 Frequency in Hertz;
+#X text 172 523 Interval ratio to Middle A;
+#X text 183 582 Semitone difference to Middle A;
+#X text 185 638 Frequency in MIDI;
+#X text 163 610 + Middle A in MIDI;
+#X text 79 671 What we did was the opposite conversion of "Frequency
+to MIDI" \, and there's also an object that does that:;
+#X obj 188 914 - 69;
+#X obj 188 941 expr pow(2 \, $f1/12);
+#X obj 188 966 * 440;
+#X obj 188 876 nbx 5 14 -1e+37 1e+37 0 0 empty empty MIDI 60 7 0 10
+-204786 -1 -1 65.47 256;
+#X obj 94 938 mtof;
+#X obj 94 996 nbx 5 14 -1e+37 1e+37 0 0 empty empty Hz 60 7 0 10 -260097
+-1 -1 358.839 256;
+#X text 149 939 =;
+#X obj 188 997 nbx 5 14 -1e+37 1e+37 0 0 empty empty Hz 60 7 0 10 -260097
+-1 -1 358.839 256;
+#X text 68 834 It's easy now to understand how the conversion from
+Hz to MIDI works:;
+#X text 86 20 The MIDI protocol has a 7 bit resolution - 2 to the power
+of 7 that gives us 128 values from 0 to 127 By influence of MIDI \,
+in PD \, a Slider has that same range.;
+#X text 85 75 MIDI numbers convert to other control information like
+frequency \, where the standard is that middle C is equal to 60 \,
+and that a unit represents semitone steps. Therefore \, the MIDI scale
+is a Log scale.;
+#X text 84 445 Hertz can be converted to MIDI if we compare its ratio
+to a point in the scale \, like 69/440Hz! See below:;
+#X obj 683 429 mtof;
+#X obj 683 457 nbx 5 14 -1e+37 1e+37 0 0 empty empty Hz 60 7 0 10 -260097
+-1 -1 660 256;
+#X obj 683 367 + 69;
+#X obj 683 311 / 100;
+#X floatatom 683 340 8 0 0 0 - - -;
+#X floatatom 683 399 8 0 0 0 - - -;
+#X text 600 99 MIDI-Cents:;
+#X obj 683 490 osc~;
+#X obj 746 494 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -175543
+-1 -1 0 1;
+#X obj 764 903 loadbang;
+#X text 605 131 In Pd we csan use MIDI numbers with decimal points
+\, the decimal places are then related to cents values! For example:
+60.5 represents 50 cents above middle C.;
+#N canvas 0 22 244 279 output 0;
+#X obj 79 176 *~;
+#X obj 67 208 dac~;
+#X obj 108 146 line~;
+#X msg 108 120 \$1 10;
+#X obj 108 94 pow 4;
+#X obj 108 67 inlet;
+#X obj 79 36 inlet~;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 2 0 0 1;
+#X connect 3 0 2 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X connect 6 0 0 0;
+#X restore 683 520 pd output;
+#X text 778 474 gain;
+#X text 603 186 To add cents values to MIDI numbers is trivial. Just
+divide the Cents measure by 100 Below we do that and send it to an
+oscillator \, check it out:;
+#X obj 611 262 nbx 5 14 -1e+37 1e+37 0 0 empty midi empty 0 -8 0 10
+-262144 -1 -1 69 256;
+#X obj 611 335 t b f;
+#X text 725 366 Plus MIDI number;
+#X text 749 340 in MIDI-Cents;
+#X text 572 261 MIDI;
+#X text 642 585 But we know the mtof formula \, lets do it all in one
+single expression to feed an oscillator.;
+#X obj 683 262 nbx 7 14 0 1200 0 0 empty cents empty 0 -8 0 10 -262144
+-1 -1 701.955 256;
+#X text 757 259 Cents;
+#X obj 706 685 nbx 5 14 0 120 0 0 empty midi empty 0 -8 0 10 -262144
+-1 -1 69 256;
+#X obj 874 687 nbx 5 14 0 1200 0 0 empty empty empty 0 -8 0 10 -262144
+-1 -1 0 256;
+#X text 706 664 midi;
+#X text 875 664 cents;
+#X obj 706 765 nbx 7 14 -1e+37 1e+37 0 0 empty empty Hz 80 7 0 10 -260097
+-1 -1 440 256;
+#X obj 874 708 trigger bang float;
+#X text 598 70 ============================================================
+;
+#X obj 921 332 nbx 5 14 -1e+37 1e+37 0 0 empty ratio empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 921 362 expr (log($f1)/log(2)) * 12;
+#X obj 988 390 cnv 15 155 18 empty empty empty 20 12 0 14 -215585 -66577
+0;
+#X text 77 369 We've seen how to convert a ratio to a Log scale in
+semitone steps \, which is almost the same as converting to cents:
+;
+#X text 1004 389 Log2(ratio) * 12;
+#X text 338 552 Log2(ratio) * 12;
+#X text 187 409 Log2(ratio) * 12;
+#X text 835 254 By the way \, since MIDI numbers and MIDI-Cents are
+based in Semitones \, the formula that converts ratio to semitones
+also converts ratio to MIDI-Cents:;
+#X floatatom 921 410 8 0 0 0 - - -;
+#X text 938 432 in MIDI-Cents;
+#X msg 764 932 \; pd dsp 1 \; midi 69 \; cents 701.955 ratio 1.5;
+#X obj 706 735 expr pow(2 \, ($f1 + ($f2/100) -69) /12) * 440;
+#X text 640 821 ============================================================
+;
+#X text 341 940 =;
+#X obj 362 940 expr pow(2 \, ($f1 -69) /12) * 440;
+#X obj 362 992 nbx 5 14 -1e+37 1e+37 0 0 empty empty Hz 60 7 0 10 -260097
+-1 -1 358.839 256;
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 1 0 14 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 8 0 4 0;
+#X connect 9 0 4 0;
+#X connect 10 0 13 0;
+#X connect 12 0 10 0;
+#X connect 14 0 19 0;
+#X connect 15 0 12 0;
+#X connect 16 0 15 0;
+#X connect 17 0 16 0;
+#X connect 30 0 31 0;
+#X connect 31 0 32 0;
+#X connect 32 0 37 0;
+#X connect 33 0 34 0;
+#X connect 33 0 30 0;
+#X connect 33 0 85 0;
+#X connect 34 0 35 0;
+#X connect 42 0 43 0;
+#X connect 43 0 49 0;
+#X connect 44 0 47 0;
+#X connect 45 0 46 0;
+#X connect 46 0 44 0;
+#X connect 47 0 42 0;
+#X connect 49 0 53 0;
+#X connect 50 0 53 1;
+#X connect 51 0 81 0;
+#X connect 56 0 57 0;
+#X connect 57 0 44 0;
+#X connect 57 1 44 1;
+#X connect 62 0 45 0;
+#X connect 64 0 82 0;
+#X connect 65 0 69 0;
+#X connect 69 0 82 0;
+#X connect 69 1 82 1;
+#X connect 71 0 72 0;
+#X connect 72 0 79 0;
+#X connect 82 0 68 0;
+#X connect 85 0 86 0;

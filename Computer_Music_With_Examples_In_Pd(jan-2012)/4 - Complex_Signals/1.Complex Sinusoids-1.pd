@@ -1,0 +1,116 @@
+#N canvas -67 51 1354 610 12;
+#X obj 649 261 grid grid2 200 -1 1 200 -1 1 0 0.0001 0.0001 10 10 833.134
+415.051;
+#X obj 732 472 nbx 5 14 -1e+37 1e+37 0 0 non x empty 0 -8 0 10 -262130
+-1 -1 0.841337 256;
+#X obj 586 357 nbx 5 14 -1e+37 1e+37 0 0 none y empty 0 -8 0 10 -261658
+-1 -1 -0.540511 256;
+#X obj 819 137 hsl 128 15 0.05 1 1 1 empty amp empty -2 -8 0 10 -260064
+-1 -1 12700 1;
+#X text 851 120 Amplitude;
+#X text 679 282 .;
+#X obj 749 263 vsl 8 195 -1 1 0 0 seno y empty 0 -9 0 10 -262130 -50
+-1 4457 1;
+#X obj 652 359 hsl 195 8 -1 1 0 0 coseno x empty -2 -8 0 10 -260876
+-39 -1 17861 1;
+#X text 820 280 .;
+#X text 814 427 .;
+#X text 682 427 .;
+#X obj 731 213 nbx 5 14 -1e+37 1e+37 0 0 nadicadenada ang empty 0 -8
+0 10 -159808 -262144 -262144 327.448 256;
+#X obj 688 107 hsl 128 15 0.05 2.5 1 0 empty hz empty -2 -8 0 10 -204800
+-1 -1 1300 1;
+#X floatatom 699 129 5 0 0 0 - - -;
+#X text 715 86 Hertz;
+#X floatatom 831 160 5 0 0 0 - - -;
+#X text 591 374 Real;
+#X obj 1078 351 image sc2.gif;
+#N canvas 128 257 838 444 Complex-Sinusoid 0;
+#X obj 331 123 inlet;
+#X obj 145 156 expr cos($f1 * 6.28) * $f2 \; sin($f1 * 6.28) * $f2
+\; $f1 * 360;
+#X obj 331 218 s ang;
+#N canvas 1014 93 266 255 phasor 0;
+#X obj 85 49 inlet;
+#X obj 84 160 snapshot~;
+#X obj 91 137 metro 100;
+#X obj 85 83 phasor~ 0.25;
+#X obj 84 194 outlet;
+#X obj 91 110 loadbang;
+#X connect 0 0 3 0;
+#X connect 1 0 4 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 0;
+#X connect 5 0 2 0;
+#X restore 145 117 pd phasor;
+#X obj 145 86 inlet;
+#X obj 429 130 loadbang;
+#N canvas 752 406 362 246 grid 0;
+#X obj -76 31 inlet;
+#X obj 65 30 inlet;
+#X floatatom 0 137 5 0 0 0 - - -;
+#X floatatom 65 139 5 0 0 0 - - -;
+#X obj 0 165 pack f f;
+#X msg 0 110 bang;
+#X msg 0 189 xvalues \$1 \$2;
+#X obj -75 87 expr ($f1 - 1) / 2;
+#X obj 65 87 expr ($f1 - 1) / 2;
+#X obj 0 213 s grid2;
+#X obj -58 60 s x;
+#X obj 94 61 s y;
+#X connect 0 0 7 0;
+#X connect 0 0 10 0;
+#X connect 1 0 8 0;
+#X connect 1 0 11 0;
+#X connect 2 0 4 0;
+#X connect 3 0 4 1;
+#X connect 3 0 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 2 0;
+#X connect 6 0 9 0;
+#X connect 7 0 2 0;
+#X connect 8 0 3 0;
+#X restore 167 232 pd grid;
+#X msg 429 154 \; pd dsp 1 \; hz 0.25 \; amp 1;
+#X connect 0 0 1 1;
+#X connect 1 0 6 0;
+#X connect 1 1 6 1;
+#X connect 1 2 2 0;
+#X connect 3 0 1 0;
+#X connect 4 0 3 0;
+#X connect 5 0 7 0;
+#X restore 686 160 pd Complex-Sinusoid;
+#X text 1066 310 Sine;
+#X text 1047 439 Cosine;
+#X text 723 491 Imaginary;
+#X text 620 52 Grahical Representation of a Complex Sinusoid:;
+#X text 968 512 === Projection over time ===;
+#X text 741 193 Phase;
+#X text 101 76 A Complex signal \, like a complex number \, has two
+parts \, a real and an imaginary. For example \, the signal output
+of FFT objects are complex signals.;
+#X text 104 209 We have only dealt with real signals so far \, with
+only a real part. Like a real number may become complex if we add an
+imaginary part to it \, a real signal can also become complex in the
+same way.;
+#X text 106 284 Lets start with a Sinusoid. To add another part and
+create a complex sinusoid \, we need to have a copy of the signal 90
+degrees appart. This phase difference is the same as of a Cosine and
+Sine. So you can have a complex sinusoid by combining a Cosine and
+Sine wave.;
+#X text 103 136 But \, the complex signals from FFT objects represent
+the frequency domain. And we will now talk about complex audio signals
+in the Time Domain. So do not confuse this with previous examples.
+;
+#X text 105 379 To the right \, a plane to represents both Cosine (Real)
+and Sine (Imaginary) parts as before seen. The sliders represent the
+amplitude change in time for both parts \, and a projection in time
+is given by the next figure.;
+#X text 108 455 The amplitude change in two dimensions \, when projected
+on a third dimension of sound \, gives us a helicoidal graph. But we
+can project back to two dimensions and see it as waveforms as we're
+used to.;
+#X connect 3 0 18 1;
+#X connect 3 0 15 0;
+#X connect 12 0 13 0;
+#X connect 12 0 18 0;

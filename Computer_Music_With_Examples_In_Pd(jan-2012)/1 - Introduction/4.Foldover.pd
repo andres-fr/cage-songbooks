@@ -1,0 +1,101 @@
+#N canvas 183 53 1072 613 12;
+#X floatatom 66 293 7 0 100 0 - osc -;
+#X text 122 290 <-- KiloHertz;
+#X obj 66 334 * 1000;
+#X obj 66 383 osc~;
+#X floatatom 122 365 6 0 0 0 - - -;
+#N canvas 68 32 541 403 Aliasing 0;
+#X obj 72 310 outlet;
+#X obj 72 81 inlet;
+#X obj 72 128 * 1000;
+#X obj 72 208 / 1000;
+#X obj 72 268 expr if ($f1 > Nyquist \, Nyquist - ($f1 - Nyquist) \,
+$f1);
+#X text 99 231 em Khz;
+#X obj 146 107 samplerate~;
+#X obj 72 174 mod;
+#X obj 146 136 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-204800 -1 -1 44100 256;
+#X text 32 104 Khz;
+#X text 51 151 Hz;
+#X obj 146 81 loadbang;
+#X text 205 135 Hz;
+#X text 114 177 Module of Sample Rate;
+#X connect 1 0 2 0;
+#X connect 2 0 7 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X connect 6 0 8 0;
+#X connect 7 0 3 0;
+#X connect 8 0 7 1;
+#X connect 11 0 6 0;
+#X restore 122 333 pd Aliasing;
+#X text 173 363 <- Alias;
+#X text 199 376 KHz;
+#X obj 320 364 samplerate~;
+#X obj 320 267 loadbang;
+#X obj 320 451 / 2;
+#X obj 320 508 value Nyquist;
+#X obj 320 427 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-204800 -1 -1 44.1 256;
+#X obj 320 482 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-261234 -1 -1 22.05 256;
+#X obj 320 395 / 1000;
+#X text 381 480 Khz;
+#X text 379 425 Khz;
+#X msg 338 298 \; pd dsp 1 \; osc 40;
+#X obj -256 297 image ./files/foldover.gif;
+#X obj 129 455 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -175543
+-1 -1 0 1;
+#X text -439 417 To understand this \, picture a very tiny sample rate
+\, like 20Hz. It's really impossible to represent audible frequencies
+such as middle A (440hz). Now \, on the above graph \, the incoming
+frequency is represented by the red line \, but according to the sample
+rate \, the blue line is what we can represent with that input. Note
+that this blue line is interpolating the values.;
+#X text -443 70 The theorem of Nyquist states that the highest frequency
+we can represent is half the sample rate \, also called "Nyquist Frequency".
+When we go above that \, we have "Aliasing" or "Foldover". In practical
+terms \, a raiding frequency will ricochet when reaching the niquist
+frequency \, and start to descend.;
+#X text 23 54 So \, if we have a 25Khz sine wave and a 24kh niquist
+frequency \, it becomes 23khz. This is how we calculate it then:;
+#X text 77 102 Frequency = Nyquist - (frequency - Nyquist);
+#X text 133 433 gain;
+#N canvas 0 22 237 305 output 0;
+#X obj 79 176 *~;
+#X obj 67 208 dac~;
+#X obj 108 146 line~;
+#X msg 108 120 \$1 10;
+#X obj 108 94 pow 4;
+#X obj 108 67 inlet;
+#X obj 79 36 inlet~;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 2 0 0 1;
+#X connect 3 0 2 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X connect 6 0 0 0;
+#X restore 66 481 pd output;
+#X text 119 401 this is what you hear.;
+#X text 26 135 If you have frequencies way too high \, even higher
+than the sample rate \, this means that the foldover has reached 0Hz
+\, and is now going back up again \, with an inverted phase. Check
+the subpatch below to see how this is calculated.;
+#X text 29 207 Change the number box values. Enjoy and test how high
+can you listen to frequencies with this free hearing exame \, and have
+fun.;
+#X connect 0 0 2 0;
+#X connect 0 0 5 0;
+#X connect 2 0 3 0;
+#X connect 3 0 25 0;
+#X connect 5 0 4 0;
+#X connect 8 0 14 0;
+#X connect 9 0 8 0;
+#X connect 9 0 17 0;
+#X connect 10 0 13 0;
+#X connect 12 0 10 0;
+#X connect 13 0 11 0;
+#X connect 14 0 12 0;
+#X connect 19 0 25 1;

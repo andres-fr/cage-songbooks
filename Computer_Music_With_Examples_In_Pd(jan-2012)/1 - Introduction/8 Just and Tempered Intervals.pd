@@ -1,0 +1,87 @@
+#N canvas 667 24 1034 535 12;
+#N canvas 1239 366 466 475 ratio 0;
+#X obj 131 354 /;
+#X obj 131 297 t b f;
+#X obj 132 323 f;
+#X obj 131 387 outlet;
+#X obj 277 112 loadbang;
+#X msg 277 141 \; numerator 3 \; denominator 2;
+#X obj 115 230 r top;
+#X obj 131 259 r bottom;
+#X obj 101 101 cnv 15 88 88 empty empty _ 20 15 0 80 -262144 -66577
+0;
+#X obj 122 162 nbx 3 16 1 1e+37 0 0 bottom denominator empty 0 -8 0
+14 -204800 -1 -1 2 256;
+#X obj 122 115 nbx 3 16 1 1e+37 0 0 top numerator empty 0 -8 0 14 -204786
+-1 -1 3 256;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 1 1 0 1;
+#X connect 2 0 0 0;
+#X connect 4 0 5 0;
+#X connect 6 0 2 0;
+#X connect 7 0 1 0;
+#X coords 0 -1 1 1 90 90 1 100 100;
+#X restore 630 188 pd ratio;
+#X obj 630 296 nbx 7 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-261682 -1 -1 1.5 256;
+#X obj 630 357 nbx 7 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-233004 -1 -1 701.955 256;
+#X obj 630 414 nbx 7 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-261682 -1 -1 1.5 256;
+#X text 582 352 Cents;
+#X obj 697 116 cnv 15 230 18 empty empty empty 20 12 0 14 -262130 -66577
+0;
+#X text 553 233 Fraction;
+#X text 46 365 The interval measure in cents has the Equal Temperament
+as its basis. It's useful because we are used to this system \, and
+we can compare the interval differences to this system.;
+#X text 46 37 Just Intervals belong to just Intonation Systems \, and
+are rational numbers. They are represented by fractions of whole numbers.
+They are \, for instance \, found in the relationship of a harmonic
+series \, because that is a sequence of whole numbers!;
+#X text 46 125 Just Intonation is contrast to Equal Temperament \,
+which have irrational numbers. For example \, we saw that the Tritone
+is square root of 2 Pd will tell us that this number is 1.41421 \,
+but the truth is that the decimal places never ends or repeats \, so
+we can't actually represent it by a "ratio" \, or a fraction of whole
+numbers!;
+#X text 556 302 ratio;
+#X text 47 227 Nevertheless \, as an approximation - and also for the
+sake of simplicity and not being too theoretically rigorous - we can
+consider 1.41421 as a ratio \, although we know it is an irrational
+number.;
+#X text 47 300 As mentioned before \, we're implying a ratio to "1".
+Thus \, any number can be called a ratio and represent a musical interval!
+;
+#X text 48 424 A Just Intonation Fifth has the ratio of 3/2 \, or 1
+\, 5 It corresponds to the proportion of the third to the second harmonic.
+To compare this Fifth to the Equal Temperament Fifth \, lets check
+both values in cents.;
+#X text 516 35 We have in mind that the Equal Temperament Fifth is
+7 Semitones wide. Since each semitone has 100 cents \, this Fifth has
+700 cents.;
+#X text 518 90 We also know the formula to convert to cents \, given
+before:;
+#X obj 630 321 expr (log($f1)/log(2))*1200;
+#X obj 630 381 expr pow(2 \, $f1/1200);
+#X text 792 380 cents to ratio;
+#X text 832 322 ratio to cents;
+#X text 581 410 ratio;
+#X text 557 213 Enter;
+#X text 545 289 or number;
+#X text 519 146 The opposite conversion is given by:;
+#X obj 773 162 cnv 15 152 28 empty empty empty 20 12 0 14 -262130 -66577
+0;
+#X text 842 168 ^;
+#X text 850 161 cents/1200;
+#X text 705 115 cents = Log2(ratio) * 1200;
+#X text 777 171 ratio = 2;
+#X text 555 442 We see that the just Fifth is approximately 2 cents
+wider than the tempered Fifth. You can enter other fractions to check
+the value of other Just INtervals in cents.;
+#X connect 0 0 1 0;
+#X connect 1 0 16 0;
+#X connect 2 0 17 0;
+#X connect 16 0 2 0;
+#X connect 17 0 3 0;

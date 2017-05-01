@@ -1,0 +1,64 @@
+#N canvas 463 115 768 398 10;
+#X obj 13 243 net-connection 192.168.1.129 3001;
+#X msg 46 7 ip 192.168.1.194 \, connect;
+#X obj 13 268 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 29 198 net-connection 192.168.1.129 3001;
+#X obj 29 223 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 81 152 net-connection 192.168.1.129 3001;
+#X obj 81 177 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 97 107 net-connection 192.168.1.129 3001;
+#X obj 97 132 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 228 241 net-connection 192.168.1.129 3001;
+#X obj 228 266 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 244 196 net-connection 192.168.1.129 3001;
+#X obj 244 221 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 296 150 net-connection 192.168.1.129 3001;
+#X obj 296 175 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 312 130 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 435 241 net-connection 192.168.1.129 3001;
+#X obj 435 266 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 44 33 inlet;
+#X msg 274 18 ip 192.168.1.214 \, connect;
+#X msg 389 52 disconnect;
+#X obj 312 105 net-connection 192.168.1.247 3001;
+#X obj 44 59 route chris young jong jisoo daniel seongmin orm richard
+amir alle;
+#X connect 0 0 2 0;
+#X connect 3 0 4 0;
+#X connect 5 0 6 0;
+#X connect 7 0 8 0;
+#X connect 9 0 10 0;
+#X connect 11 0 12 0;
+#X connect 13 0 14 0;
+#X connect 16 0 17 0;
+#X connect 18 0 22 0;
+#X connect 19 0 11 0;
+#X connect 20 0 11 0;
+#X connect 21 0 15 0;
+#X connect 22 0 0 0;
+#X connect 22 1 3 0;
+#X connect 22 2 5 0;
+#X connect 22 3 7 0;
+#X connect 22 4 9 0;
+#X connect 22 5 11 0;
+#X connect 22 6 13 0;
+#X connect 22 7 21 0;
+#X connect 22 8 16 0;
+#X connect 22 9 7 0;
+#X connect 22 9 13 0;
+#X connect 22 9 5 0;
+#X connect 22 9 3 0;
+#X connect 22 9 11 0;
+#X connect 22 9 16 0;
+#X connect 22 9 9 0;
+#X connect 22 9 0 0;
+#X connect 22 9 21 0;

@@ -1,0 +1,7 @@
+1 open qasmixer
+2 choose hw->scarlett 18i20 usb
+3 activate all the small butons below the "master" faders
+4 route the master to the PCM outputs (correspond to the outputs of the jack server)
+5 save config: alsactl -f scarlett.state store
+
+6 reload config: alsactl -f scarlett.state restore

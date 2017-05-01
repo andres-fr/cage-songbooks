@@ -1,0 +1,236 @@
+#N canvas 510 243 1207 1034 12;
+#N canvas 127 88 334 283 load 0;
+#X obj 74 -40 loadbang;
+#X obj 74 -12 del 500;
+#X msg 74 21 \; pd dsp 1 \; hz 5 \; Re xticks 0 32 1 \; Im xticks 0
+32 1 \; Phase xticks 0 32 1 \; Amplitude xticks 0 32 1;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X restore 136 363 pd load;
+#X obj 513 237 cnv 15 650 630 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X obj 538 253 cnv 15 600 280 empty empty Cartesian 20 12 0 14 -262130
+-4160 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array Re 129 float 0;
+#X coords 0 128 128 -128 256 200 1;
+#X restore 570 305 graph;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array Im 129 float 0;
+#X coords 0 128 128 -128 256 200 1;
+#X restore 846 304 graph;
+#X obj 571 306 cnv 15 254 198 empty empty empty 20 12 0 14 -236717
+-66577 0;
+#X text 674 502 Nyquist;
+#X text 568 501 0;
+#X text 815 501 sr;
+#X text 950 503 Nyquist;
+#X text 844 502 0;
+#X text 1087 501 sr;
+#X obj 847 305 cnv 15 254 198 empty empty empty 20 12 0 14 -257521
+-66577 0;
+#X text 555 393 0;
+#X text 833 395 0;
+#X text 675 279 Cosine;
+#X text 958 282 Sine;
+#X obj 538 566 cnv 15 600 280 empty empty Polar 20 12 0 14 -262130
+-4160 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array Amplitude 129 float 0;
+#X coords 0 128 128 0 256 200 1;
+#X restore 569 611 graph;
+#X obj 570 610 cnv 15 254 200 empty empty empty 20 12 0 14 -204786
+-66577 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array Phase 129 float 0;
+#X coords 0 -3.14 128 3.14 256 200 1;
+#X restore 846 611 graph;
+#X obj 847 612 cnv 15 254 198 empty empty empty 20 12 0 14 -203904
+-66577 0;
+#X text 950 810 Nyquist;
+#X text 844 809 0;
+#X text 1087 808 sr;
+#X text 673 810 Nyquist;
+#X text 567 809 0;
+#X text 813 808 sr;
+#X text 833 701 0;
+#X text 75 936 It Must be Clear that for each frequency point \, the
+Cosine and Sine values represent the coordinates on a plane as we just
+saw on the previous examples.;
+#X text 38 22 [fft~] performs a "Fast Fourier Transform" that decomposes
+a periodic signal into Pure Tone Components. It's a "Transform" because
+a block of audio samples in the time domain (where each sample represents
+a point in time \, and has an amplitude value) is Transformed into
+the frequency domain \, where we have the same block size of "samples"
+representing frequency points \, with amplitude values of Sine and
+Cosine for each frequency! And you know that if you have Frequency
+and Sine and Cosines \, you have all the information you need to descrie
+a Pure Tone Cmomponent!;
+#X text 39 184 So the [fft~] object spits out the block of samples
+with the amplitude values in the frequency domain. The amplitudes are
+Cosine and Sine components \, or "Real" and "Imaginary" Parts of Complex
+Numbers in the Cartesian Form! We also convert it to Polar form (Amplitude
+Phase) and plot them all to the right.;
+#X obj 222 282 cnv 15 150 120 empty empty empty 20 12 0 14 -260097
+-66577 0;
+#X text 43 594 On this example we are analysing a Pure Tone. So if
+it is a frequency that belongs to the harmonic series \, we see that
+the result on the tables are stable. Change the phase values for a
+harmonic and see how it changes.;
+#X obj 122 551 cnv 15 220 30 empty empty empty 20 12 0 14 -203905 -66577
+0;
+#N canvas 908 144 494 858 Fequency-Band_&_Periodicity 0;
+#X obj 161 93 samplerate~;
+#X floatatom 161 117 8 0 0 0 - - -;
+#X obj 161 147 v sr;
+#X obj 11 61 trigger bang bang bang;
+#X obj 11 23 loadbang;
+#X obj 11 217 nbx 8 22 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 16
+-261234 -1 -1 344.531 256;
+#X obj 11 255 v band;
+#X text 150 217 Frequency Band in Hertz \, or "fundamental";
+#X obj -12 307 cnv 15 450 120 empty empty empty 20 12 0 14 -233017
+-66577 0;
+#X text 14 346 It must be clear that the size of the block of audio
+defines the frequency resolution! A good frequency resolution is provided
+by bigger block sizes. The bigger the size \, the smaller the frequency
+band is!;
+#X text 38 318 IMPORTANT:;
+#X obj -13 446 cnv 15 450 350 empty empty empty 20 12 0 14 -233017
+-66577 0;
+#X text 3 483 A very important concept is that FFT will analyze a block
+of audio taking for granted that it is PERIODIC!;
+#X text 21 458 PERIODICITY:;
+#X obj 11 184 expr sr / block;
+#X text 133 177 A frequency band is equal to \; (Sample Rate / Block
+Size);
+#X obj 86 149 v block;
+#X text 3 525 - The "Fast Fourier Transform" is said to decompose a
+PERIODIC SIGNAL into Pure Tone Components. Therefore \, the block of
+audio is considered to be periodic! It is seen as some sort of a "periodic
+sound wave" that "repeats" \, or "loops". So it'd need to finish at
+the exact value that it starts \, otherwise it "jumps" or "clicks"
+from the last to the initial value.;
+#X text 4 641 And this is what the FFT outputs if a Pure Tone Frequency
+Comopnent does not precisely fit in the block size. Conversely. the
+plot looks very nice and stable when the frequency fits perfectly into
+the block size \, which happens for frequencies equal to the frequency
+band (or "fundamental") and its multiples ("harmonics").;
+#X text 37 751 Go back to the main window and check it out.;
+#X msg 86 116 128;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 3 0 14 0;
+#X connect 3 1 20 0;
+#X connect 3 2 0 0;
+#X connect 4 0 3 0;
+#X connect 5 0 6 0;
+#X connect 14 0 5 0;
+#X connect 20 0 16 0;
+#X restore 125 556 pd Fequency-Band_&_Periodicity;
+#X text 37 510 The subpatch below shows us how to calculate a frequency
+band \, and its implication on the harmonics and periodicity of a FFT.
+;
+#X text 35 415 The Block Size and Sample Rate define the value of a
+frequency band - the difference in Hz from one frequency point to the
+next. Thinking of a Harmonic Series \, the frequency band value is
+the "fundamental" \, or point "1" on the table. The following points
+are the "harmonics".;
+#X text 229 297 the [block~] object;
+#X text 244 315 sets block size;
+#X text 260 331 in samples;
+#X text 647 884 We are used to see the Amplitude Values from a FFT
+in the Polar. This tells us how loud each partial (or frequency point)
+is. That is easy to comprehend! It's much harder to interpret the tables
+from Cosine \, Sine and Phase tables. The Amplitudes have a maximum
+value of half the block size \, but note that the Nyquist frequency
+or 0Hz (DC Offset) has a maximum value equal to the block size.;
+#X obj 154 834 cnv 15 110 70 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 188 699 nbx 4 14 0 44.1 0 0 empty empty Khz 0 -6 0 10 -204800
+-1 -1 0 256;
+#X obj 188 729 * 1000;
+#X floatatom 71 737 8 0 0 0 - - -;
+#X text 136 737 Hz;
+#X obj 71 695 nbx 3 14 0 128 0 0 empty empty empty 0 -8 0 12 -261234
+-1 -1 6 256;
+#X obj 188 770 osc~ 5000;
+#X text 228 809 Imaginary Part;
+#X text 107 808 Real Part;
+#X text 53 675 "Harmonic";
+#X obj 71 713 expr $i1 * band;
+#X obj 248 699 nbx 4 14 0 1 0 0 empty empty phase 0 -6 0 10 -203904
+-1 -1 0 256;
+#X msg 259 725 0;
+#X msg 294 725 0.25;
+#X msg 337 725 0.5;
+#X msg 371 725 0.75;
+#X text 266 773 Sine Tone;
+#X obj 158 839 cnv 15 100 60 empty empty empty 20 12 0 14 -262068 -66577
+0;
+#N canvas 150 29 786 727 plot-fft 0;
+#X text 116 324 Amplitude;
+#X obj 270 289 tabwrite~ Im;
+#X obj 185 391 tabwrite~ Amplitude;
+#X obj 270 272 bng 8 250 50 0 empty bangue empty 17 7 0 10 -228856
+-228856 -1;
+#X obj 83 268 bng 8 250 50 0 empty bangue empty 17 7 0 10 -228856 -228856
+-1;
+#X obj 83 288 tabwrite~ Re;
+#X obj 185 302 cartopol~;
+#X obj 256 346 bng 8 250 50 0 empty bangue empty 17 7 0 10 -228856
+-228856 -1;
+#X obj 196 375 bng 8 250 50 0 empty bangue empty 17 7 0 10 -228856
+-228856 -1;
+#X obj 245 362 tabwrite~ Phase;
+#X text 251 323 Initial Phase;
+#X obj 189 72 inlet~;
+#X obj 261 65 inlet~;
+#X obj 395 151 tgl 15 0 empty empty empty 0 -6 0 10 -262144 -1 -1 1
+1;
+#X obj 395 172 metro 205;
+#X obj 416 115 loadbang;
+#X obj 395 198 s bangue;
+#X connect 3 0 1 0;
+#X connect 4 0 5 0;
+#X connect 6 0 2 0;
+#X connect 6 1 9 0;
+#X connect 7 0 9 0;
+#X connect 8 0 2 0;
+#X connect 11 0 6 0;
+#X connect 11 0 5 0;
+#X connect 12 0 6 1;
+#X connect 12 0 1 0;
+#X connect 13 0 14 0;
+#X connect 14 0 16 0;
+#X connect 15 0 13 0;
+#X restore 166 860 pd plot-fft;
+#X text 618 183 We'll get back to this example when we talk about Complex
+Signals.;
+#X text 618 16 Note that in the Amplitude and Cosine tables we have
+a mirroring of values over the Nyquist Frequency! Both a mirroring
+and an invertion occur to the Sine and Phase tables. This is because
+[fft~] actually calculates a FFT of Complex Signals.;
+#X text 618 100 The [rfft~] object is what you actually want to use
+for Real Signal. It is also faster and just ignores values over the
+Nyquist Frequency. So you can have tables that are half the size of
+your block size. Try to change and see for yourself.;
+#X obj 188 804 fft~;
+#X msg 67 782 set \$1;
+#X msg 65 829 2067.19;
+#X obj 259 365 block~ 128;
+#X connect 43 0 44 0;
+#X connect 44 0 48 0;
+#X connect 45 0 48 0;
+#X connect 45 0 65 0;
+#X connect 47 0 52 0;
+#X connect 48 0 64 0;
+#X connect 52 0 45 0;
+#X connect 53 0 48 1;
+#X connect 54 0 48 1;
+#X connect 55 0 48 1;
+#X connect 56 0 48 1;
+#X connect 57 0 48 1;
+#X connect 64 0 60 0;
+#X connect 64 1 60 1;
+#X connect 65 0 66 0;

@@ -1,0 +1,145 @@
+#N canvas 93 22 1027 823 12;
+#X floatatom 220 274 5 0 15 0 - - -;
+#X obj 196 653 sqrt;
+#X msg 235 617 2;
+#X floatatom 196 683 8 0 0 0 - - -;
+#X obj 196 714 pow 2;
+#X floatatom 196 746 5 0 0 0 - - -;
+#X msg 659 173 12;
+#X floatatom 271 683 8 0 0 0 - - -;
+#X obj 271 716 expr pow($f1 \, 2);
+#X floatatom 271 746 5 0 0 0 - - -;
+#X text 245 653 =;
+#X text 246 714 =;
+#X floatatom 659 283 8 0 0 0 - - -;
+#X obj 659 146 loadbang;
+#X floatatom 220 353 5 0 0 0 - - -;
+#X obj 220 313 expr pow (2 \, $f1);
+#X obj 220 389 expr log($f1)/log(2);
+#X floatatom 220 420 5 0 15 0 - - -;
+#X text 726 283 = 2;
+#X text 749 274 1/12;
+#X floatatom 823 522 8 0 0 0 - - -;
+#X floatatom 679 524 8 0 0 0 - - -;
+#X obj 713 436 sqrt;
+#X msg 713 409 2;
+#X obj 758 410 bng 15 250 50 0 empty empty empty 17 7 0 10 -204800
+-1 -1;
+#X msg 675 434 2;
+#X obj 833 273 expr pow(2 \, 1/$f1);
+#X floatatom 833 250 5 0 0 0 - - -;
+#X floatatom 833 298 5 0 0 0 - - -;
+#X obj 659 201 t b f;
+#X obj 495 573 cnv 15 500 230 empty empty Cents 5 34 0 22 -203904 -165529
+0;
+#X obj 783 696 sqrt;
+#X msg 783 670 2;
+#X obj 827 671 bng 15 250 50 0 empty empty empty 17 7 0 10 -204786
+-1 -1;
+#X msg 745 694 2;
+#X obj 763 727 expr (log($f1)/log(2)) * 1200;
+#X text 547 782 ============================================================
+;
+#X text 543 572 ============================================================
+;
+#X obj 763 758 nbx 5 18 -1e+37 1e+37 0 0 empty empty Cents 68 10 0
+12 -261682 -1 -1 0 256;
+#X obj 523 729 cnv 15 230 18 empty empty empty 20 12 0 14 -262130 -66577
+0;
+#X text 38 210 For interval units \, we need a logarithmic scale. In
+the case of octaves \, this is a log of base 2 scale. See the example
+below.;
+#X text 63 352 doubles or "octaves";
+#X text 137 273 scale unit;
+#X text 32 420 convert back to log scale;
+#X text 37 456 (Log of base 2 can be given by dividing a logarithm
+of any base to the log of 2 in the same base \, above we have natural
+logarithms);
+#X text 35 510 The tritone interval divides the octave in two equal
+intervals \, which means that both have the same proportion. In order
+to divide in that way \, we need to perform a geometric division. When
+it comes to divide in two parts \, that means extracting the square
+root.;
+#X text 90 653 square root;
+#X obj 271 652 expr pow($f1 \, 0.5);
+#X text 40 706 multiply the interval;
+#X text 78 723 by itself;
+#X text 41 747 reaches octave again;
+#X text 507 174 Divide the Octave in;
+#X text 696 172 equal parts (Equal Temperament);
+#X obj 691 226 value parts;
+#X obj 659 252 expr pow(2 \, 1/parts);
+#X text 848 226 (Other divisions;
+#X text 878 247 of the Octave);
+#X text 557 282 Step Interval;
+#X obj 659 309 value semitone;
+#X obj 758 434 value semitone;
+#X obj 827 694 value semitone;
+#X text 532 728 Cents = Log2(interval) * 1200;
+#X text 883 523 Semitones;
+#X text 742 525 Octave;
+#X obj 679 481 expr log($f1)/log(2) \; log($f1)/log(2) * 12;
+#X floatatom 656 412 5 1 10 0 - - -;
+#X text 568 478 Log2(interval);
+#X text 530 495 Log2(interval) * 12;
+#X floatatom 695 695 5 0 0 0 - - -;
+#X text 37 26 A Musical Interval is a proportional relationship between
+two frequencies or a "ratio". So the same frequency difference is not
+the same musical interval! For example: 220Hz / 110Hz = 2 / 1 (a proportional
+relationship of 2 to 1). That is the octave ratio - 220Hz is the octave
+of 110Hz \, and 440Hz is the octave of 220Hz. an octave below would
+be 0.5 \, or 1/2.;
+#X text 36 144 We're calling these numbers "ratios" because we are
+implying a relationship to "1"! Hence \, a ratio of "1" is simply the
+Unison interval \, or 1/1.;
+#X text 269 617 Octave;
+#X text 339 682 Tritone;
+#X text 502 18 So \, to divide an octave in X equal steps \, you need
+to have 2 to the power of 1/X to find that step value. Lets divide
+it by 12 parts then (as our beloved equal temperament) \, and find
+the semitone interval of 1.05946:;
+#X text 502 87 These are actually irrational numbers \, and we'll see
+what this means on the next example.;
+#X text 538 349 On the next formulas \, we'll calculate the decimal
+number of ocatves and semitones according to a given interval.;
+#X text 582 423 Interval;
+#X text 575 593 Cent is an interval measure unit based on the equal
+tempered semitone. One Cent is a division of a semitone in 100 equal
+parts. Thus \, an octave Since has 1200 cents! Similar to above \,
+here's the formula to convert to cents.;
+#X text 880 300 Step Interval;
+#X connect 0 0 15 0;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 2 0 47 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 6 0 29 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 12 0 58 0;
+#X connect 13 0 6 0;
+#X connect 14 0 16 0;
+#X connect 15 0 14 0;
+#X connect 16 0 17 0;
+#X connect 22 0 64 0;
+#X connect 23 0 22 0;
+#X connect 24 0 59 0;
+#X connect 25 0 64 0;
+#X connect 26 0 28 0;
+#X connect 27 0 26 0;
+#X connect 29 0 54 0;
+#X connect 29 1 53 0;
+#X connect 31 0 35 0;
+#X connect 32 0 31 0;
+#X connect 33 0 60 0;
+#X connect 34 0 35 0;
+#X connect 35 0 38 0;
+#X connect 47 0 7 0;
+#X connect 54 0 12 0;
+#X connect 59 0 64 0;
+#X connect 60 0 35 0;
+#X connect 64 0 21 0;
+#X connect 64 1 20 0;
+#X connect 65 0 64 0;
+#X connect 68 0 35 0;

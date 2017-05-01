@@ -1,0 +1,102 @@
+#N canvas 150 22 1104 868 12;
+#X obj 549 423 cos~;
+#X obj 548 358 phasor~ 300;
+#X obj 550 510 *~;
+#X obj 540 550 dac~;
+#X msg 725 439 \; pd dsp 1;
+#X obj 725 415 loadbang;
+#X obj 666 386 hsl 128 15 0 1 0 0 empty empty gain -2 -8 0 10 -262130
+-1 -1 0 1;
+#X obj 663 408 pow 4;
+#X obj 663 461 line~;
+#X msg 663 434 \$1 10;
+#X obj 829 262 cnv 15 198 138 empty empty empty 20 12 0 14 -262130
+-66577 0;
+#X obj 633 323 t b f;
+#X msg 577 288 0;
+#X msg 614 288 0.25;
+#X msg 661 288 0.5;
+#X msg 702 287 0.75;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array cosine 441 float 0;
+#X coords 0 1 440 -1 200 140 1;
+#X restore 829 261 graph;
+#X obj 577 259 loadbang;
+#X obj 831 426 cnv 15 198 138 empty empty empty 20 12 0 14 -204786
+-66577 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array phasor 441 float 0;
+#X coords 0 1 440 0 200 140 1;
+#X restore 831 425 graph;
+#X obj 653 503 tabwrite~ phasor;
+#X text 816 552 0;
+#X text 814 420 1;
+#X text 816 254 1;
+#X text 807 383 -1;
+#X obj 548 332 nbx 5 14 0 10000 0 0 empty empty empty 0 -8 0 10 -204786
+-1 -1 0 256;
+#X text 548 311 Hz;
+#X obj 670 671 osc~ 300;
+#X text 735 670 =;
+#X obj 756 685 cos~;
+#X obj 756 659 phasor~ 300;
+#X obj 295 217 image ./files/angulo.gif;
+#X obj 275 567 image ./files/seno.gif;
+#X text 721 656 *;
+#X text 84 305 Above we have an "alfa" angle and a value of y' that
+is the sine amplitude value. The x' value \, on the other hand \, is
+the cosine amplitude. X and Y are the full amplitude values \, and
+lets say they are both equal to "1".;
+#X text 81 376 A 0 phase \, or 0 degree angle \, gives us a full cosine
+amplitude of 1 and a 0 sine amplitude. Lets shift this angle an dconsider
+the sine amplitude \, here's what we have over time:;
+#X text 83 49 An oscillator "oscillates" between amplitude values.
+Thus \, we can generate a sound wave. A sine or cosine function will
+give us a single frequency tone \, or "pure tone". The input of such
+these functions is an angle or "phase" (from 0 to 360 degrees for example).
+;
+#X text 95 691 If it were the cosine function \, it'd start at the
+highest value of 1 \, then descend to -1 at the same pattern \, but
+by a phase difference of 90 degrees.;
+#X text 510 759 IN SHORT: An oscillator needs 3 things \; - Frequency
+of phase shift \; - Initial phase \; - Maximum Amplitude value \, or
+gain adjustment...;
+#X text 741 284 phase;
+#X obj 633 528 tabwrite~ cosine;
+#X floatatom 660 261 5 0 0 0 - - -;
+#X text 733 267 initial;
+#X text 541 146 The right inlet of [phasor~] lets you set the initial
+phase between 0 to 1 \, so you can have a sine wave as to the left
+by setting a initial phase of 0.75 or -0.25! Note that the phases are
+"warpped" into values from 0 to 1 even if they are negative or higher
+than 1!;
+#X text 575 593 The [osc~] object is a cosine wave generator \, and
+is the same as a [phasor~] object connected to a [cos~] object.;
+#X text 541 48 The frequency is the speed at wich the angle/phase changes!
+In Pd \, the [phasor~] object generates a ramp cycle from 0 to 1 at
+a given frequency. This is interpreted by the [cos~] (cosine) object
+as a phase shift between 0 and 360 degrees \, so it ouputs a Cosine
+wave.;
+#X text 647 717 * right inlet resets phase in the same way.;
+#X connect 0 0 2 0;
+#X connect 0 0 40 0;
+#X connect 1 0 0 0;
+#X connect 1 0 20 0;
+#X connect 2 0 3 0;
+#X connect 2 0 3 1;
+#X connect 5 0 4 0;
+#X connect 6 0 7 0;
+#X connect 7 0 9 0;
+#X connect 8 0 2 1;
+#X connect 9 0 8 0;
+#X connect 11 0 20 0;
+#X connect 11 0 40 0;
+#X connect 11 1 1 1;
+#X connect 12 0 11 0;
+#X connect 13 0 11 0;
+#X connect 14 0 11 0;
+#X connect 15 0 11 0;
+#X connect 17 0 12 0;
+#X connect 25 0 1 0;
+#X connect 30 0 29 0;
+#X connect 41 0 11 0;

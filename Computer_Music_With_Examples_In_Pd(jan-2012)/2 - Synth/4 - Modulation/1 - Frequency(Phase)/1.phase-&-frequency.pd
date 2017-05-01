@@ -1,0 +1,212 @@
+#N canvas 331 22 903 826 12;
+#X obj 610 589 cnv 15 200 140 empty empty empty 20 12 0 14 -204800
+-66577 0;
+#X obj 609 83 cnv 15 198 138 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 611 252 cnv 15 198 138 empty empty empty 20 12 0 14 -204786
+-66577 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array phasor1 441 float 1;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0;
+#X coords 0 1 440 0 200 140 1;
+#X restore 608 82 graph;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array phasor2 441 float 1;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0;
+#X coords 0 1 440 0 200 140 1;
+#X restore 610 251 graph;
+#X obj 282 649 cos~;
+#X msg 383 400 0;
+#X obj 83 556 +;
+#X obj 83 650 osc~;
+#X msg 394 429 0.5;
+#X obj 242 453 phasor~;
+#X obj 314 449 phasor~;
+#X obj 109 521 t b f;
+#X obj 83 602 nbx 5 14 -1e+37 1e+37 0 0 wrap empty empty 0 -8 0 10
+-204800 -1 -1 0 256;
+#X obj 673 237 nbx 5 14 -1e+37 1e+37 0 0 ww ph2 empty 0 -8 0 10 -204786
+-1 -1 0 256;
+#X obj 670 68 nbx 5 14 -1e+37 1e+37 0 0 xxx ph1 empty 0 -8 0 10 -261682
+-1 -1 0 256;
+#X obj 648 574 nbx 5 14 -1e+37 1e+37 0 0 xx wrap empty 0 -8 0 10 -204800
+-1 -1 0 256;
+#X text 592 205 0;
+#X text 593 76 1;
+#X text 592 374 0;
+#X text 593 245 1;
+#X text 594 712 0;
+#X text 595 583 1;
+#X text 590 542 0;
+#X obj 132 678 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -204800
+-1 -1 0 1;
+#X obj 331 678 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -204800
+-1 -1 0 1;
+#X obj 610 419 cnv 15 200 70 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X obj 610 490 cnv 15 200 70 empty empty empty 20 12 0 14 -204800 -66577
+0;
+#X text 591 413 2;
+#X text 590 479 1;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array sum 441 float 1;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0;
+#X coords 0 2 440 0 202 142 1;
+#X restore 609 418 graph;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array wrap 441 float 1;
+#A 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1;
+#X coords 0 1 440 0 202 142 1;
+#X restore 609 588 graph;
+#X text 85 266 the practical result off adding 2 [phasor~] objects
+is you sum up the frequencies. And it doesn't matter if they are out
+of phase.;
+#N canvas 997 77 551 596 graphs 0;
+#X obj 189 430 cnv 15 70 30 empty empty empty 20 12 0 14 -204800 -66577
+0;
+#X obj 200 374 +~;
+#X obj 24 336 tabwrite~ phasor1;
+#X obj 364 328 tabwrite~ phasor2;
+#X obj 200 435 wrap~;
+#X obj 200 493 tabwrite~ wrap;
+#X obj 49 91 inlet~;
+#X obj 298 92 inlet~;
+#X obj 154 239 metro 1000;
+#X obj 256 401 tabwrite~ sum;
+#X obj 154 134 loadbang;
+#X msg 170 168 \; pd dsp 1;
+#X connect 1 0 4 0;
+#X connect 1 0 9 0;
+#X connect 4 0 5 0;
+#X connect 6 0 1 0;
+#X connect 6 0 2 0;
+#X connect 7 0 3 0;
+#X connect 7 0 1 1;
+#X connect 8 0 3 0;
+#X connect 8 0 2 0;
+#X connect 8 0 5 0;
+#X connect 8 0 9 0;
+#X connect 10 0 8 0;
+#X connect 10 0 11 0;
+#X restore 374 560 pd graphs;
+#X obj 282 618 +~;
+#X text 418 399 in phase;
+#X text 423 430 out of phase;
+#X obj 231 373 nbx 5 14 -1e+37 1e+37 0 0 ph2 hz empty 0 -8 0 10 -204786
+-1 -1 0 256;
+#X obj 129 372 nbx 5 14 -1e+37 1e+37 0 0 ph1 hz empty 0 -8 0 10 -261682
+-1 -1 0 256;
+#X text 87 131 We know [phasor~] outputs ramps from 0 to 1 Now \, if
+you sum up 2 [phasor~] objects \, you have a possible range from 0
+to 2! the [wrap~] object (used to generate graphs) will keep this value
+between 0 and 1 \, or sucessively subtract 1 if it goes above it.;
+#X text 86 224 A few oscillator objects will already wrap up the phase
+like that \, as [cos~] \, for example.;
+#X text 85 58 We'll see examples of Frequency \, Phase and Amplitude
+modulation. Basically \, what we do is modulate the values of these
+parameters with another oscillator. This helps you to understand how
+phase and frequency are related.;
+#N canvas 0 22 237 305 gain 0;
+#X obj 79 176 *~;
+#X obj 67 208 dac~;
+#X obj 108 146 line~;
+#X msg 108 120 \$1 10;
+#X obj 108 94 pow 4;
+#X obj 108 67 inlet;
+#X obj 79 36 inlet~;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 2 0 0 1;
+#X connect 3 0 2 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X connect 6 0 0 0;
+#X restore 282 704 pd gain;
+#N canvas 0 22 237 305 gain 0;
+#X obj 79 176 *~;
+#X obj 67 208 dac~;
+#X obj 108 146 line~;
+#X msg 108 120 \$1 10;
+#X obj 108 94 pow 4;
+#X obj 108 67 inlet;
+#X obj 79 36 inlet~;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 2 0 0 1;
+#X connect 3 0 2 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X connect 6 0 0 0;
+#X restore 83 704 pd gain;
+#X connect 5 0 42 0;
+#X connect 6 0 10 1;
+#X connect 6 0 11 1;
+#X connect 7 0 13 0;
+#X connect 8 0 43 0;
+#X connect 9 0 11 1;
+#X connect 10 0 33 0;
+#X connect 10 0 34 0;
+#X connect 11 0 33 1;
+#X connect 11 0 34 1;
+#X connect 12 0 7 0;
+#X connect 12 1 7 1;
+#X connect 13 0 8 0;
+#X connect 24 0 43 1;
+#X connect 25 0 42 1;
+#X connect 34 0 5 0;
+#X connect 37 0 12 0;
+#X connect 37 0 11 0;
+#X connect 38 0 7 0;
+#X connect 38 0 10 0;

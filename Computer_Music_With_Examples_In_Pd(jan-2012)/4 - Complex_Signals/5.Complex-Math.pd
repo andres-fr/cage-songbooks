@@ -1,0 +1,325 @@
+#N canvas 372 96 958 696 12;
+#X obj 63 574 cnv 15 174 28 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X obj 587 414 cnv 15 174 28 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X text 44 48 Complex numbers have special properties that makes it
+easier for us when manipulating FFT data.;
+#X text 47 215 On the other hand \, if we divide two complex numbers
+\, we divide their Amplitudes and subtract their phases!;
+#X text 61 555 Multiplying them gives us a real part that's equal to
+\; (Re1 * Re2) - (Im1 * Im2) & an imaginary part equal to \; (Im1 *
+Re2) + (Re1 * Im2). Below we have these operations with math objects:
+;
+#N canvas 619 27 951 848 complex-division 0;
+#X obj 669 105 cartopol;
+#X obj 510 106 cartopol;
+#X text 501 179 Amplitudes;
+#X obj 503 70 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Re1 Re1 0 -8 0 12
+-262130 -1 -1 0 256;
+#X obj 662 70 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Re2 Re2 0 -8 0 12
+-257985 -1 -1 0 256;
+#X obj 563 70 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Im1 Im1 0 -8 0 12
+-204786 -1 -1 0 256;
+#X obj 722 70 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Im2 Im2 0 -8 0 12
+-4034 -1 -1 0 256;
+#X obj 579 174 /;
+#X obj 632 174 -;
+#X text 519 164 Divide;
+#X obj 132 428 *;
+#X obj 173 427 *;
+#X obj 254 426 *;
+#X obj 220 426 *;
+#X obj 252 359 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Re2 Re2 0 -8 0 12
+-257985 -1 -1 0 256;
+#X obj 312 359 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Im2 Im2 0 -8 0 12
+-4034 -1 -1 0 256;
+#X obj 132 479 +;
+#X obj 228 482 -;
+#X obj 131 586 nbx 5 18 -1e+37 1e+37 0 0 empty empty Re -18 9 0 12
+-245290 -1 -1 0 256;
+#X obj 227 585 nbx 7 18 -1e+37 1e+37 0 0 empty empty Im -18 7 0 12
+-171620 -1 -1 0 256;
+#X obj 131 547 /;
+#X obj 227 547 /;
+#X obj 308 445 *;
+#X obj 349 444 *;
+#X obj 308 496 +;
+#X obj 110 359 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Re1 Re1 0 -8 0 12
+-262130 -1 -1 0 256;
+#X obj 170 359 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Im1 Im1 0 -8 0 12
+-204786 -1 -1 0 256;
+#X obj 52 755 nbx 5 18 -1e+37 1e+37 0 0 empty empty Re -18 9 0 12 -245290
+-1 -1 0 256;
+#X obj 329 754 nbx 7 18 -1e+37 1e+37 0 0 empty empty Im -18 7 0 12
+-171620 -1 -1 0 256;
+#X obj 350 693 expr (pow(Re2 \, 2) + pow(Im2 \, 2));
+#X obj 350 723 v norm;
+#X obj 52 641 bng 22 250 50 0 empty empty empty 17 7 0 10 -262130 -1
+-1;
+#X obj 52 706 expr ((Re1 * Re2) + (Im1 * Im2)) / norm \; ((Im1 * Re2)
+- (Re1 * Im2)) / norm;
+#X obj 100 280 v Re1;
+#X obj 262 242 nbx 4 18 -1e+37 1e+37 0 0 \$0-Re2 empty Re2 0 -8 0 12
+-257985 -1 -1 0 256;
+#X obj 163 241 nbx 4 18 -1e+37 1e+37 0 0 \$0-Im1 empty Im1 0 -8 0 12
+-204786 -1 -1 0 256;
+#X obj 322 242 nbx 4 18 -1e+37 1e+37 0 0 \$0-Im2 empty Im2 0 -8 0 12
+-4034 -1 -1 0 256;
+#X obj 100 240 nbx 4 18 -1e+37 1e+37 0 0 \$0-Re1 empty Re1 0 -8 0 12
+-262130 -1 -1 0 256;
+#X obj 163 278 v Im1;
+#X obj 262 278 v Re2;
+#X obj 322 278 v Im2;
+#X obj 52 671 trigger bang------ bang------;
+#X obj 226 455 swap;
+#X obj 544 544 nbx 5 18 -1e+37 1e+37 0 0 empty empty Re -18 9 0 12
+-245290 -1 -1 0 256;
+#X obj 772 543 nbx 7 18 -1e+37 1e+37 0 0 empty empty Im -18 7 0 12
+-171620 -1 -1 0 256;
+#X obj 544 466 bng 22 250 50 0 empty empty empty 17 7 0 10 -262130
+-1 -1;
+#X obj 579 254 poltocar;
+#X obj 551 293 nbx 5 18 -1e+37 1e+37 0 0 empty empty Re -18 9 0 12
+-245290 -1 -1 0 256;
+#X obj 642 292 nbx 7 18 -1e+37 1e+37 0 0 empty empty Im -18 7 0 12
+-171620 -1 -1 0 256;
+#X obj 632 218 nbx 5 16 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 13
+-204800 -1 -1 0 256;
+#X obj 716 632 nbx 5 16 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 13
+-204800 -1 -1 0 256;
+#X obj 557 218 nbx 5 16 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 13
+-261234 -1 -1 0 256;
+#X obj 642 632 nbx 5 16 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 13
+-259602 -1 -1 0 256;
+#X obj 544 495 expr ((Re1 * Re2) + (Im1 * Im2)) \; ((Im1 * Re2) - (Re1
+* Im2));
+#X obj 663 587 cartopol;
+#X text 705 217 Fase;
+#X text 525 214 Amp;
+#X text 610 629 Amp;
+#X text 57 22 Complex Division:;
+#X text 94 103 normalization = (Re2 * Re2) + (Im2 * Im2);
+#X text 72 196 Generate values from the right to the left:;
+#X text 664 172 Subtract;
+#X text 667 188 Phases;
+#X text 491 400 The normalization factor only changes the amplitude
+value \, the phase still remains the same. If you don't care about
+amplitudes \, you can ignore this step:;
+#X text 649 650 wrong;
+#X text 719 652 the Same;
+#X text 787 630 Phase;
+#X text 78 639 calculate with expr;
+#X text 88 52 Re: (Re1 * Re2) + (Im1 * Im2) / normalization \; Im:
+(Im1 * Re2) - (Re1 * Im2) / normalization;
+#X text 571 466 <- click;
+#X connect 0 0 7 1;
+#X connect 0 1 8 1;
+#X connect 1 0 7 0;
+#X connect 1 1 8 0;
+#X connect 3 0 1 0;
+#X connect 4 0 0 0;
+#X connect 5 0 1 1;
+#X connect 6 0 0 1;
+#X connect 7 0 51 0;
+#X connect 8 0 49 0;
+#X connect 10 0 16 0;
+#X connect 11 0 16 1;
+#X connect 12 0 42 1;
+#X connect 13 0 42 0;
+#X connect 14 0 10 1;
+#X connect 14 0 12 1;
+#X connect 14 0 22 1;
+#X connect 14 0 22 0;
+#X connect 15 0 13 1;
+#X connect 15 0 11 1;
+#X connect 15 0 23 1;
+#X connect 15 0 23 0;
+#X connect 16 0 20 0;
+#X connect 17 0 21 0;
+#X connect 20 0 18 0;
+#X connect 21 0 19 0;
+#X connect 22 0 24 0;
+#X connect 23 0 24 1;
+#X connect 24 0 21 1;
+#X connect 24 0 20 1;
+#X connect 25 0 10 0;
+#X connect 25 0 13 0;
+#X connect 26 0 11 0;
+#X connect 26 0 12 0;
+#X connect 29 0 30 0;
+#X connect 31 0 41 0;
+#X connect 32 0 27 0;
+#X connect 32 1 28 0;
+#X connect 34 0 39 0;
+#X connect 35 0 38 0;
+#X connect 36 0 40 0;
+#X connect 37 0 33 0;
+#X connect 41 0 32 0;
+#X connect 41 1 29 0;
+#X connect 42 0 17 0;
+#X connect 42 1 17 1;
+#X connect 43 0 54 0;
+#X connect 44 0 54 1;
+#X connect 45 0 53 0;
+#X connect 46 0 47 0;
+#X connect 46 1 48 0;
+#X connect 49 0 46 1;
+#X connect 51 0 46 0;
+#X connect 53 0 43 0;
+#X connect 53 1 44 0;
+#X connect 54 0 52 0;
+#X connect 54 1 50 0;
+#X restore 695 566 pd complex-division;
+#N canvas 723 114 1170 739 complex-multiply 0;
+#X obj 134 503 expr (Re1 * Re2) - (Im1 * Im2) \; (Im1 * Re2) + (Re1
+* Im2);
+#X obj 134 465 bng 25 250 50 0 empty empty empty 17 7 0 10 -262130
+-1 -1;
+#X obj 120 335 v Re1;
+#X obj 180 335 v Im1;
+#X obj 278 334 v Re2;
+#X obj 338 335 v Im2;
+#X obj 678 171 *;
+#X obj 678 198 -;
+#X obj 719 170 *;
+#X obj 773 169 *;
+#X obj 806 169 *;
+#X obj 120 305 nbx 4 18 -1e+37 1e+37 0 0 \$0-Re1 empty Re1 0 -8 0 12
+-262130 -1 -1 0 256;
+#X obj 278 305 nbx 4 18 -1e+37 1e+37 0 0 \$0-Re2 empty Re2 0 -8 0 12
+-257985 -1 -1 0 256;
+#X obj 180 305 nbx 4 18 -1e+37 1e+37 0 0 \$0-Im1 empty Im1 0 -8 0 12
+-204786 -1 -1 0 256;
+#X obj 338 305 nbx 4 18 -1e+37 1e+37 0 0 \$0-Im2 empty Im2 0 -8 0 12
+-4034 -1 -1 0 256;
+#X obj 640 99 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Re1 Re1 0 -8 0 12
+-262130 -1 -1 0 256;
+#X obj 782 99 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Re2 Re2 0 -8 0 12
+-257985 -1 -1 0 256;
+#X obj 700 99 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Im1 Im1 0 -8 0 12
+-204786 -1 -1 0 256;
+#X obj 842 99 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Im2 Im2 0 -8 0 12
+-4034 -1 -1 0 256;
+#X obj 134 553 nbx 5 18 -1e+37 1e+37 0 0 empty empty Re -18 9 0 12
+-245290 -1 -1 0 256;
+#X obj 348 553 nbx 5 18 -1e+37 1e+37 0 0 empty empty Im -18 7 0 12
+-171620 -1 -1 0 256;
+#X obj 678 234 nbx 5 18 -1e+37 1e+37 0 0 empty empty Re -18 9 0 12
+-245290 -1 -1 0 256;
+#X obj 804 479 cartopol;
+#X floatatom 804 508 8 0 0 0 - - -;
+#X floatatom 867 509 8 0 0 0 - - -;
+#X obj 645 480 cartopol;
+#X obj 720 617 poltocar;
+#X floatatom 635 509 8 0 0 0 - - -;
+#X floatatom 698 510 8 0 0 0 - - -;
+#X obj 728 575 *;
+#X obj 766 574 +;
+#X text 630 585 Amplitudes;
+#X obj 638 444 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Re1 Re1 0 -8 0 12
+-262130 -1 -1 0 256;
+#X obj 797 444 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Re2 Re2 0 -8 0 12
+-257985 -1 -1 0 256;
+#X obj 698 444 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Im1 Im1 0 -8 0 12
+-204786 -1 -1 0 256;
+#X obj 857 444 nbx 4 18 -1e+37 1e+37 0 0 empty \$0-Im2 Im2 0 -8 0 12
+-4034 -1 -1 0 256;
+#X obj 682 656 nbx 5 18 -1e+37 1e+37 0 0 empty empty Re -18 9 0 12
+-245290 -1 -1 0 256;
+#X obj 790 655 nbx 5 18 -1e+37 1e+37 0 0 empty empty Im -18 7 0 12
+-171620 -1 -1 0 256;
+#X text 5 512 Complex Multiply:;
+#X text 238 468 with [expr]:;
+#X text 632 567 multiply;
+#X text 810 571 Sum;
+#X text 806 587 Phases;
+#X text 159 590 Re = (Re1 * Re2) - (Im1 * Im2) \; Im = (Im1 * Re2)
++ (Re1 * Im2);
+#X text 165 468 calculate;
+#X text 457 189 Re = (Re1 * Re2) - (Im1 * Im2);
+#X text 831 191 Im = (Im1 * Re2) + (Re1 * Im2);
+#X text 516 336 If we convert the complex number to the Polar Form
+\, we can see how this is the same as multiplying the Amplitudes and
+summing up the phases:;
+#X text 63 378 Insert values from the right to the left because of
+hot/cold inlets. These will update the other number boxes.;
+#X obj 786 200 +;
+#X obj 786 233 nbx 5 18 -1e+37 1e+37 0 0 empty empty Im -18 7 0 12
+-171620 -1 -1 0 256;
+#X connect 0 0 19 0;
+#X connect 0 1 20 0;
+#X connect 1 0 0 0;
+#X connect 6 0 7 0;
+#X connect 7 0 21 0;
+#X connect 8 0 7 1;
+#X connect 9 0 49 0;
+#X connect 10 0 49 1;
+#X connect 11 0 2 0;
+#X connect 12 0 4 0;
+#X connect 13 0 3 0;
+#X connect 14 0 5 0;
+#X connect 15 0 6 0;
+#X connect 15 0 10 0;
+#X connect 16 0 9 1;
+#X connect 16 0 6 1;
+#X connect 17 0 8 0;
+#X connect 17 0 9 0;
+#X connect 18 0 10 1;
+#X connect 18 0 8 1;
+#X connect 22 0 23 0;
+#X connect 22 1 24 0;
+#X connect 23 0 29 1;
+#X connect 24 0 30 1;
+#X connect 25 0 27 0;
+#X connect 25 1 28 0;
+#X connect 26 0 36 0;
+#X connect 26 1 37 0;
+#X connect 27 0 29 0;
+#X connect 28 0 30 0;
+#X connect 29 0 26 0;
+#X connect 30 0 26 1;
+#X connect 32 0 25 0;
+#X connect 33 0 22 0;
+#X connect 34 0 25 1;
+#X connect 35 0 22 1;
+#X connect 49 0 50 0;
+#X restore 221 615 pd complex-multiply;
+#X text 515 394 The division is quite similar \, it gives us a real
+part equal to: (Re1 * Re2) + (Im1 * Im2) & an imaginary part equal
+to: (Im1 * Re2) - (Re1 * Im2). Compare to the multiplication and note
+that we just switched "+" by "-";
+#X text 514 477 But we also need to normalize the divided result of
+both parts by a same factor equal to: (Re2 * Re2) + (Im2 * Im2) \,
+wich is the square of the real part plus the square of the imaginary
+part of the complex number we are dividing to. Check the subpatch:
+;
+#X text 45 90 They come from multiplying the imaginary unit ("i") to
+itself \, which gives us -1!;
+#X text 454 272 ============================================================
+;
+#X text 35 272 ============================================================
+;
+#X text 45 307 Complex Multiply:;
+#X text 46 130 So when we multiply two complex numbers \, at the end
+we have a complex number with an Amplitude that's equal to the multiplication
+of the complex numbers' Amplitudes. As for the phase \, it is equal
+to the sum of the complex numbers' phases!;
+#X text 488 93 Let's check complex multiplication and division in the
+cartesian form. We got two complex numbers as coordinates on a cartesian
+plane: [(Re1 + Im1) & (Re2 + Im2)]. Each dimension on the plane represent
+a "part" (a real part "Re" and an imaginary part "Im"). These coordinates
+are both real numbers \, but we know that the imaginary part is multiplied
+by the imaginary unit "i".;
+#X text 53 339 - So we start with (Re1 + Im1) * (Re2 + Im2) \; - after
+the distributive property we have \; (Re1 * Re2) + (Im1 * Im2) + (Im1
+* Re2) + (Re1 * Im2);
+#X text 57 465 This will actually remove the imaginary unit from that
+part of the equation. And then we can consider this first half as the
+resulting real part of the multiplication.;
+#X text 55 397 Now note that we have (Im1 * Im2). Since both are multiplied
+by "i" \, we need to multiply "i" to itself \, which will give us "-1"
+\, since the imaginary unit "i" is the square root of -1 We then have
+to change "+" for "-";
+#X text 47 527 In Short:;
+#X text 507 340 Complex Division:;

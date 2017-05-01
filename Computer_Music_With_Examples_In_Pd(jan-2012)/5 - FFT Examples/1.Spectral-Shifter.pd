@@ -1,0 +1,162 @@
+#N canvas 450 31 837 977 12;
+#X obj 68 628 cnv 15 320 60 empty empty empty 20 12 0 14 -171382 -66577
+0;
+#N canvas 77 67 628 393 hilbert~ 0;
+#X obj 115 104 biquad~ 0.83774 -0.06338 0.06338 -0.83774 1;
+#X obj 115 76 biquad~ 1.94632 -0.94657 0.94657 -1.94632 1;
+#X obj 96 159 biquad~ -0.02569 0.260502 -0.260502 0.02569 1;
+#X obj 96 185 biquad~ 1.8685 -0.870686 0.870686 -1.8685 1;
+#X obj 96 49 inlet~;
+#X obj 115 130 outlet~;
+#X obj 96 213 outlet~;
+#X obj 379 323 hilbert~;
+#X text 249 285 Copiado da abstração [hilbert~] que vem no Pd.;
+#X connect 0 0 5 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 0 6 0;
+#X connect 4 0 1 0;
+#X connect 4 0 2 0;
+#X restore 96 546 pd hilbert~;
+#X obj 96 502 adc~;
+#X obj 272 494 nbx 5 16 -2000 2000 0 0 empty empty empty 0 -8 0 13
+-204800 -1 -1 0 256;
+#X text 66 568 real;
+#X text 235 586 real;
+#X text 108 638 Re1;
+#X text 157 638 Im1;
+#X text 204 641 Re2;
+#X text 257 639 Im2;
+#X obj 185 711 hsl 128 15 0 1 0 0 empty empty gain -2 -6 0 10 -203904
+-1 -1 0 0;
+#X text 79 471 Carrier Signal;
+#X text 186 560 imaginary;
+#X text 347 492 Modulator Frequency;
+#X text 399 555 Complex Sinusoid;
+#X text 349 588 imaginary;
+#N canvas 267 136 529 373 gain 0;
+#X obj 234 176 *~;
+#X obj 222 208 dac~;
+#X obj 263 146 line~;
+#X msg 263 120 \$1 10;
+#X obj 263 94 pow 4;
+#X obj 263 67 inlet;
+#X obj 234 36 inlet~;
+#N canvas 131 60 278 287 plot-spectrum 0;
+#X obj 53 64 inlet~;
+#X obj 53 99 rfft~;
+#X obj 132 98 loadbang;
+#X obj 132 146 metro 250;
+#X obj 132 125 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 1
+1;
+#X obj 89 224 block~ 4096;
+#X obj 41 137 cartopol~;
+#X obj 51 188 tabwrite~ \$0-Spectrum;
+#X connect 0 0 1 0;
+#X connect 1 0 6 0;
+#X connect 1 1 6 1;
+#X connect 2 0 4 0;
+#X connect 3 0 7 0;
+#X connect 4 0 3 0;
+#X connect 6 0 7 0;
+#X restore 165 250 pd plot-spectrum;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 2 0 0 1;
+#X connect 3 0 2 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X connect 6 0 0 0;
+#X connect 6 0 7 0;
+#X restore 136 735 pd gain;
+#X text 186 354 To multiply two complex signals \, we apply what we
+learned about complex math properties. But what we care is only the
+real part (that is what we listen to anyway) \, so we ignore how to
+calculate the imaginary part. Check the subpatch below:;
+#X text 235 829 As it's been said: A Complex Multiplication does multiply
+the Amplitudes and Sum up the Phases. In Phase Modulation we learned
+that summing up the phases means that the frequencies are being added
+up \, and this is what's happening here.;
+#X text 227 803 ============================================================
+;
+#N canvas 0 22 1135 400 Complex-Modulation 0;
+#X msg 249 184 \; pd dsp 1;
+#X obj 249 159 loadbang;
+#X obj 487 183 *~;
+#X obj 524 185 *~;
+#X obj 488 234 -~;
+#X obj 717 232 expr~ ($v1 * $v3) - ($v2 * $v4);
+#X text 422 185 Re1*Re2;
+#X text 558 184 Im1*Im2;
+#X text 496 261 (Re1*Re2 - Im1*Im2);
+#X text 756 265 (Re1*Re2 - Im1*Im2);
+#X text 711 207 Re1;
+#X text 851 207 Re2;
+#X text 775 207 Im1;
+#X text 929 209 Im2;
+#X obj 417 91 inlet~;
+#X obj 469 91 inlet~;
+#X obj 557 91 inlet~;
+#X obj 608 91 inlet~;
+#X text 421 64 Re1;
+#X text 559 61 Re2;
+#X text 478 63 Im1;
+#X text 611 60 Im2;
+#X obj 488 322 outlet~;
+#X text 549 324 Real Part;
+#X text 82 261 Calculating only the Real Part from a Complex Multiply:
+;
+#X text 731 182 [expr~] version:;
+#X connect 1 0 0 0;
+#X connect 2 0 4 0;
+#X connect 3 0 4 1;
+#X connect 4 0 22 0;
+#X connect 14 0 2 0;
+#X connect 15 0 3 0;
+#X connect 16 0 2 1;
+#X connect 17 0 3 1;
+#X restore 136 657 pd Complex-Modulation;
+#X obj 436 611 cnv 15 298 138 empty empty empty 20 12 0 14 -174629
+-66577 0;
+#N canvas 0 22 478 328 (subpatch) 0;
+#X array \$0-Spectrum 128 float 0;
+#X coords 0 3248 127 0 300 140 1;
+#X restore 435 610 graph;
+#X text 527 750 500Hz;
+#X text 474 749 250Hz;
+#X text 434 749 50Hz;
+#X text 582 749 750Hz;
+#X text 641 749 1KHz;
+#X text 686 750 1.25KHz;
+#X obj 272 582 cos~;
+#X obj 318 582 cos~;
+#X obj 318 556 -~ 0.25;
+#X obj 272 521 phasor~;
+#X obj 150 508 osc~ 500;
+#X text 184 42 When we multiply two real signals \, we have Ring Modulation.
+Now we'll see what happens for Complex Signals. The result is not much
+different than the Ring Modulation we already know \, which eliminates
+the original components and creates copies of it in two sidebands (in
+a frequency band equal to the modulator frequency).;
+#X text 186 146 What happens here is the same \, but we only have one
+sideband! So it's just like we shiffted the carrier signal upwards
+or downwards. This is why this technique is also known as "Single SideBand
+Modulation".;
+#X text 186 216 But it is also called "Frequency Shiffting" \, because
+is like all of the frequncies are being shiffted upwards or downwards.
+It's not a Pitch Shiffter because we'd need the relationship between
+partials to remain the same - whereas in this case we do compress the
+relationship between the spectral components when we shift it upwards
+\, and expand it when we shift it downwards. So try a mic or line input
+to check this out.;
+#X connect 1 0 20 0;
+#X connect 1 1 20 1;
+#X connect 3 0 32 0;
+#X connect 10 0 16 1;
+#X connect 20 0 16 0;
+#X connect 29 0 20 2;
+#X connect 30 0 20 3;
+#X connect 31 0 30 0;
+#X connect 32 0 29 0;
+#X connect 32 0 31 0;
+#X connect 33 0 1 0;

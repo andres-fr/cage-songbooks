@@ -1,0 +1,134 @@
+#N canvas 127 268 1212 785 12;
+#N canvas 127 88 295 249 load 0;
+#X obj 34 -57 loadbang;
+#X obj 34 -29 del 500;
+#X msg 34 1 \; pd dsp 1 \; Re xticks 0 32 1 \; Im xticks 0 32 1 \;
+Phase xticks 0 32 1 \; Amplitude xticks 0 32 1;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X restore 350 282 pd load;
+#X obj 523 75 cnv 15 650 630 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X obj 548 91 cnv 15 600 280 empty empty Cartesian 20 12 0 14 -262130
+-4160 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array Re 129 float 0;
+#X coords 0 128 128 -128 256 200 1;
+#X restore 580 143 graph;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array Im 129 float 0;
+#X coords 0 128 128 -128 256 200 1;
+#X restore 856 142 graph;
+#X obj 581 144 cnv 15 254 198 empty empty empty 20 12 0 14 -236717
+-66577 0;
+#X text 684 340 Nyquist;
+#X text 578 339 0;
+#X text 825 339 sr;
+#X text 960 341 Nyquist;
+#X text 854 340 0;
+#X text 1097 339 sr;
+#X obj 857 143 cnv 15 254 198 empty empty empty 20 12 0 14 -257521
+-66577 0;
+#X text 565 231 0;
+#X text 843 233 0;
+#X text 685 117 Cosine;
+#X text 968 120 Sine;
+#X obj 548 404 cnv 15 600 280 empty empty Polar 20 12 0 14 -262130
+-4160 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array Amplitude 129 float 0;
+#X coords 0 128 128 0 256 200 1;
+#X restore 579 449 graph;
+#X obj 580 448 cnv 15 254 200 empty empty empty 20 12 0 14 -204786
+-66577 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array Phase 129 float 0;
+#X coords 0 3.14 128 -3.13 256 200 1;
+#X restore 856 449 graph;
+#X obj 857 450 cnv 15 254 198 empty empty empty 20 12 0 14 -203904
+-66577 0;
+#X text 960 648 Nyquist;
+#X text 854 647 0;
+#X text 1097 646 sr;
+#X text 683 648 Nyquist;
+#X text 577 647 0;
+#X text 823 646 sr;
+#X text 843 539 0;
+#X obj 302 303 cnv 15 100 60 empty empty empty 20 12 0 14 -260097 -66577
+0;
+#X obj 311 320 block~ 128;
+#X obj 123 291 cnv 15 110 70 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X text 197 266 Imaginary Part;
+#X text 76 265 Real Part;
+#X obj 157 261 fft~;
+#X obj 127 296 cnv 15 100 60 empty empty empty 20 12 0 14 -262068 -66577
+0;
+#N canvas 1056 22 634 702 plot-fft 0;
+#X text 116 324 Amplitude;
+#X obj 270 289 tabwrite~ Im;
+#X obj 185 391 tabwrite~ Amplitude;
+#X obj 270 272 bng 8 250 50 0 empty bangue empty 17 7 0 10 -228856
+-228856 -1;
+#X obj 83 268 bng 8 250 50 0 empty bangue empty 17 7 0 10 -228856 -228856
+-1;
+#X obj 83 288 tabwrite~ Re;
+#X obj 185 302 cartopol~;
+#X obj 256 346 bng 8 250 50 0 empty bangue empty 17 7 0 10 -228856
+-228856 -1;
+#X obj 196 375 bng 8 250 50 0 empty bangue empty 17 7 0 10 -228856
+-228856 -1;
+#X obj 245 362 tabwrite~ Phase;
+#X text 251 323 Initial Phase;
+#X obj 189 72 inlet~;
+#X obj 261 65 inlet~;
+#X obj 395 151 tgl 15 0 empty empty empty 0 -6 0 10 -262144 -1 -1 1
+1;
+#X obj 395 172 metro 205;
+#X obj 416 115 loadbang;
+#X obj 395 198 s bangue;
+#X connect 3 0 1 0;
+#X connect 4 0 5 0;
+#X connect 6 0 2 0;
+#X connect 6 1 9 0;
+#X connect 7 0 9 0;
+#X connect 8 0 2 0;
+#X connect 11 0 6 0;
+#X connect 11 0 5 0;
+#X connect 12 0 6 1;
+#X connect 12 0 1 0;
+#X connect 13 0 14 0;
+#X connect 14 0 16 0;
+#X connect 15 0 13 0;
+#X restore 135 317 pd plot-fft;
+#X obj 156 212 hilbert~;
+#X obj 156 177 osc~ 5000;
+#X text 84 227 Real Part;
+#X text 215 230 Imaginary Part;
+#X text 27 24 Recall that the [fft~] object performs FFT in Complex
+Signals \, while [rfft~] is devoted to real signals. In the first FFT
+example we analysed a real signal with [fft~] and saw that there was
+a mirroring of the values over the Nyquist Frequency.;
+#X text 29 115 Well \, this doesn't happen when [fft~] is properly
+fed with real and imaginary parts. But \, if you cut the stream of
+the imaginary part \, you'll see the same thing again.;
+#X text 49 581 We'll see examples of how Complex Signals in the time
+domain are useful in some DSP processes. Before moving on to some practical
+examples on the next folder \, lets check some special properties of
+Complex Math. After all \, is because these special properties that
+the usage of Complex Numbers/Signals are quite handy.;
+#X text 44 389 Of course there are a few fundamental differences between
+the FFT analysis of Real and Complex Signals \, as well as some implications.
+Nevertheless \, it is important to understand that real and complex
+signals are fundamentaly the same thing that can equally be decomposed.
+;
+#X text 47 484 But one thing is that the plots in the frequency domain
+for Real and Complex signals will both be Complex Signals \, and will
+both look the same and mean the same in general terms. But the data
+itself account for different things \, as the complex fft data can
+reconstruct complex signals.;
+#X connect 34 0 36 0;
+#X connect 34 1 36 1;
+#X connect 37 0 34 0;
+#X connect 37 1 34 1;
+#X connect 38 0 37 0;

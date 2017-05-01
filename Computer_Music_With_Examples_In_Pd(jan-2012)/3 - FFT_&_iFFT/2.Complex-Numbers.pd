@@ -1,0 +1,94 @@
+#N canvas 433 22 1082 965 12;
+#X obj 269 316 image euler.gif;
+#X text 57 573 The circle we see has the radius of "1". The real part
+has the values from "-1" to "1". The imaginay part also goes from "-1"
+to "1" \, but it is multiplied by the imaginary unit "i" \, so it actually
+goes from "-1 * i" to "1 * i".;
+#X text 56 832 We can represent a Complex Number on the Cartesian Form
+\, as a coordinate of Cosine (real part) and Sine (imaginary part).
+We can also represent it on the Polar Form \, which is by the Amplitude
+(or "magnitude") Value and Phase (or "argument"). In any of both cases
+we have two things \, two dimensions \, two "parts".;
+#X text 530 196 There are objects that do these convertions \, see
+below:;
+#X text 66 18 Complex Numbers have particular properties that make
+some operations easier for us.;
+#X text 57 774 As we still have basically a plane \, we can apply the
+same formulas from the previous example to get the Amplitude and Phase.
+;
+#X obj 523 639 cnv 15 500 140 empty empty empty 20 12 0 14 -96558 -66577
+0;
+#X obj 524 553 cnv 15 330 80 empty empty Cartesian 20 12 0 14 -228844
+-66577 0;
+#X obj 521 385 cnv 15 490 100 empty empty Polar 20 12 0 14 -261682
+-66577 0;
+#X floatatom 628 398 8 0 0 0 - - -;
+#X text 651 419 Amplitude;
+#X floatatom 658 602 5 0 0 0 - - -;
+#X floatatom 795 601 5 0 0 0 - - -;
+#X text 618 600 Real;
+#X floatatom 828 398 8 0 0 0 - - -;
+#X floatatom 828 259 5 0 0 0 imaginary - -;
+#X floatatom 628 260 5 0 0 0 real - -;
+#X obj 658 509 expr cos($f2) * $f1 \; sin($f2) * $f1;
+#X obj 690 653 cartopol;
+#X obj 690 716 poltocar;
+#X floatatom 680 682 8 0 0 0 - - -;
+#X text 609 683 Amplitude;
+#X floatatom 743 683 8 0 0 0 - - -;
+#X floatatom 743 747 5 0 0 1 imaginary - -;
+#X floatatom 690 747 5 0 0 0 real - -;
+#X text 717 602 Imaginary;
+#X text 836 442 (Angle in radians);
+#X text 851 419 Phase;
+#X text 770 654 Convert from Cartesian to Polar;
+#X text 809 683 Phase;
+#X text 762 714 Converts from Polar to Cartesian;
+#X text 540 308 Convert from Cartesian to Polar:;
+#X text 518 490 Converts from Polar to Cartesian:;
+#X text 537 655 Convertion Objects:;
+#X text 548 822 The conversion objects come in Pd-Extended \, and there
+audio versions too:;
+#X obj 665 848 cartopol~;
+#X obj 770 848 poltocar~;
+#X text 635 887 But you can also just use [expr~]!;
+#X obj 628 328 expr sqrt($f1*$f1 + $f2*$f2) \; atan2($f2 \, $f1);
+#X text 66 55 A "Real Number" has only a "real" part. A Complex Number
+has both a "real" and an "imaginary" part. So they are a set of numbers
+that can be derived from real numbers just by adding another dimension
+to them. We can represent it on a cartesian plane as below \, which
+is the figure of Euler's formula:;
+#X text 58 502 Yep \, it's the same idea from the previous example.
+We can go on and say that the real part (horizontal axis) is the Cosine
+Amplitude \, and that the imaginary part (vertical axis) is the Sine
+Amplitude.;
+#X text 58 647 The imaginary Unit is equal to the "square root of -1"!
+A Complex Number is a coordinate (real part \, imaginary part) \, or
+(a \, b*i) - where "a" and "b" are real numbers.;
+#X text 57 701 We don't actually deal with the imaginary unit as a
+number in Pd \, in the sense that it appears in number boxes. We only
+see real numbers \, but it is implicit in the process that "b" is multiplied
+by "i".;
+#X text 534 25 It is easy to convert a number from the cartesian to
+polar form and vice-versa. The formulas on the last example convert
+from Cartesian (Sine and Cosine Ampltidues) to the Polar form (Amplitude
+and Phase). To convert it back \, we just need the Cosine and Sine
+functions of the Phase angle \, multiplied by the Amplitude.;
+#X text 533 140 Amplitude and Phase are literally mean the Amplitude
+and Initial Phase of a Pure Tone!;
+#X connect 9 0 17 0;
+#X connect 11 0 18 0;
+#X connect 12 0 18 1;
+#X connect 14 0 17 1;
+#X connect 15 0 38 1;
+#X connect 16 0 38 0;
+#X connect 17 0 11 0;
+#X connect 17 1 12 0;
+#X connect 18 0 20 0;
+#X connect 18 1 22 0;
+#X connect 19 0 24 0;
+#X connect 19 1 23 0;
+#X connect 20 0 19 0;
+#X connect 22 0 19 1;
+#X connect 38 0 9 0;
+#X connect 38 1 14 0;

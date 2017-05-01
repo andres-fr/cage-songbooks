@@ -1,0 +1,45 @@
+#N canvas 198 22 1069 792 12;
+#X obj 283 318 samplerate~;
+#X obj 283 296 bng 15 250 50 0 empty empty empty 17 7 0 10 -261682
+-1 -1;
+#X floatatom 283 344 5 0 0 0 - - -;
+#X obj 674 396 pow 32;
+#X obj 674 426 nbx 11 22 -1e+37 1e+37 0 0 empty empty empty 0 -8 0
+12 -261682 -1 -1 0 256;
+#X msg 674 371 2;
+#X obj 529 614 image ./files/onda.gif;
+#X text 121 85 Sound is represented by numbers in the computer \, whcih
+account for the amplitude value at a specified time \, or a "sample".
+In the physical world \, the amplitude of a wave is defined by a motion
+in space.;
+#X text 126 155 Time and space are continuous \, which means there
+are \, theoretically \, infinite steps between any interval measure.
+As we have a finite storing and memory capacity in computers (at least
+for now) \, time and space have to be represented by discrete steps.
+So we're approximating at a certain resolution. Time resolution is
+given by the "Sample Rate" \, which is the frequency we collect amplitude
+values. The amplitude resolution is given by a number in bits.;
+#X text 309 292 <- click;
+#X text 122 380 In Pd \, the [samplerate~] object informs the Sample
+Rate Pd is running at \, and you can change it by the -r flag at start
+up menu. The usual standard is a sample rate of 44.1Khz \, which means
+there are 44100 amplitude values for each second. (once every 0.0226
+milisecond).;
+#X text 715 366 <- click;
+#X text 737 396 (to the power of 32);
+#X text 569 92 The amplitude values \, by standard \, go from -1 to
+1 in the digital world \, and they represent compression and decompression
+cycles of air molecules.;
+#X text 568 148 In the graph below we have a representation amplitudes
+(in dB) over time. 1 is the highest compression peak \, and -1 represents
+the highest decompression point. 0 represents silence.;
+#X text 568 213 The bit resolution defines the division of this range.
+1 bit is a binary unit and can be either 0 or 1 \, and that is 2 values
+\, or 2 to the power of 1 (2^1). Pd runs at 32 bits \, which gives
+us 2^32 steps.;
+#X text 564 319 This means there are about 4.3 billions of values between
+-1 & 1!;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 3 0 4 0;
+#X connect 5 0 3 0;
