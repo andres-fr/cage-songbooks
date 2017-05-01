@@ -1,0 +1,21 @@
+# Content: <DELAY_IN_SAMPLES> | <NORMALIZATION_FACTOR> | <PATH_TO_WAV_FILE>
+# fields are separated by '|'
+# Lines starting with '#' (comments) will be ignored
+0|-0.192156|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+380|0.097251|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+0|-0.0455804|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+380|0.021363|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+250|-0.0145406|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+380|0.0131951|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+250|-0.0119742|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+380|0.0108662|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+270|-0.00997414|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+380|0.00927587|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+270|-0.00862647|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+130|0.00977401|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+250|-0.00878387|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+380|0.00892548|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+270|-0.00832521|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+130|0.00906904|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+250|-0.00816362|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav
+380|0.00859225|/home/afr/Desktop/cage-songbooks/jolana/blob-29.wav

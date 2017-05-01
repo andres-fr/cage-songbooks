@@ -1,0 +1,112 @@
+<!DOCTYPE patchbay>
+<patchbay version="0.4.2" name="jack-patch">
+ <output-sockets>
+  <socket client="system" type="jack-audio" exclusive="off" name="system">
+   <plug>capture_1</plug>
+   <plug>capture_2</plug>
+   <plug>capture_3</plug>
+   <plug>capture_4</plug>
+   <plug>capture_5</plug>
+   <plug>capture_6</plug>
+   <plug>capture_7</plug>
+   <plug>capture_8</plug>
+   <plug>capture_9</plug>
+   <plug>capture_10</plug>
+   <plug>capture_11</plug>
+   <plug>capture_12</plug>
+   <plug>capture_13</plug>
+   <plug>capture_14</plug>
+   <plug>capture_15</plug>
+   <plug>capture_16</plug>
+   <plug>capture_17</plug>
+   <plug>capture_18</plug>
+  </socket>
+  <socket client="pure_data_0" type="jack-audio" exclusive="off" name="pure_data_0">
+   <plug>output0</plug>
+   <plug>output1</plug>
+   <plug>output2</plug>
+   <plug>output3</plug>
+   <plug>output4</plug>
+   <plug>output5</plug>
+  </socket>
+  <socket client="system" type="jack-audio" exclusive="off" name="system 2">
+   <plug>capture_3</plug>
+   <plug>capture_4</plug>
+   <plug>capture_5</plug>
+   <plug>capture_6</plug>
+   <plug>capture_7</plug>
+   <plug>capture_8</plug>
+  </socket>
+  <socket client="Midi Through" type="alsa-midi" exclusive="off" name="Midi Through">
+   <plug>Midi Through Port-0</plug>
+  </socket>
+  <socket client="Scarlett 18i20 USB" type="alsa-midi" exclusive="off" name="Scarlett 18i20 USB">
+   <plug>Scarlett 18i20 USB MIDI 1</plug>
+  </socket>
+  <socket client="nanoKONTROL2" type="alsa-midi" exclusive="off" name="nanoKONTROL2">
+   <plug>nanoKONTROL2 MIDI 1</plug>
+  </socket>
+  <socket client="Pure Data" type="alsa-midi" exclusive="off" name="Pure Data">
+   <plug>Pure Data Midi-Out 1</plug>
+  </socket>
+ </output-sockets>
+ <input-sockets>
+  <socket client="system" type="jack-audio" exclusive="off" name="system">
+   <plug>playback_1</plug>
+   <plug>playback_2</plug>
+   <plug>playback_3</plug>
+   <plug>playback_4</plug>
+   <plug>playback_5</plug>
+   <plug>playback_6</plug>
+   <plug>playback_7</plug>
+   <plug>playback_8</plug>
+   <plug>playback_9</plug>
+   <plug>playback_10</plug>
+   <plug>playback_11</plug>
+   <plug>playback_12</plug>
+   <plug>playback_13</plug>
+   <plug>playback_14</plug>
+   <plug>playback_15</plug>
+   <plug>playback_16</plug>
+   <plug>playback_17</plug>
+   <plug>playback_18</plug>
+   <plug>playback_19</plug>
+   <plug>playback_20</plug>
+  </socket>
+  <socket client="pure_data_0" type="jack-audio" exclusive="off" name="pure_data_0">
+   <plug>input0</plug>
+   <plug>input1</plug>
+   <plug>input2</plug>
+   <plug>input3</plug>
+   <plug>input4</plug>
+   <plug>input5</plug>
+  </socket>
+  <socket client="system" type="jack-audio" exclusive="off" name="system 2">
+   <plug>playback_3</plug>
+   <plug>playback_4</plug>
+   <plug>playback_5</plug>
+   <plug>playback_6</plug>
+   <plug>playback_7</plug>
+   <plug>playback_8</plug>
+  </socket>
+  <socket client="Midi Through" type="alsa-midi" exclusive="off" name="Midi Through">
+   <plug>Midi Through Port-0</plug>
+  </socket>
+  <socket client="Scarlett 18i20 USB" type="alsa-midi" exclusive="off" name="Scarlett 18i20 USB">
+   <plug>Scarlett 18i20 USB MIDI 1</plug>
+  </socket>
+  <socket client="nanoKONTROL2" type="alsa-midi" exclusive="off" name="nanoKONTROL2">
+   <plug>nanoKONTROL2 MIDI 1</plug>
+  </socket>
+  <socket client="Pure Data" type="alsa-midi" exclusive="off" name="Pure Data">
+   <plug>Pure Data Midi-In 1</plug>
+  </socket>
+ </input-sockets>
+ <slots/>
+ <cables>
+  <cable output="pure_data_0" input="system 2" type="jack-audio"/>
+  <cable output="system 2" input="pure_data_0" type="jack-audio"/>
+  <cable output="nanoKONTROL2" input="Pure Data" type="alsa-midi"/>
+ </cables>
+</patchbay>
+

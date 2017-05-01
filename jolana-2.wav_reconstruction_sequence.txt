@@ -1,0 +1,3 @@
+# Content: <DELAY_IN_SAMPLES> | <NORMALIZATION_FACTOR> | <PATH_TO_WAV_FILE>
+# fields are separated by '|'
+# Lines starting with '#' (comments) will be ignored
